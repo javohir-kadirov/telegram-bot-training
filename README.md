@@ -62,6 +62,16 @@ telegram-bot-training/
 - Implemented configuration validation for `BOT_TOKEN` and `ADMIN_ID`.
 - Protected sensitive configuration using `.gitignore` and `.env.example`.
 
+### Day 4 — Asynchronous Programming with asyncio
+
+- Learned the fundamentals of asynchronous programming and the Event Loop.
+- Practiced defining coroutines using `async def` and `await`.
+- Compared blocking `time.sleep()` with non-blocking `asyncio.sleep()`.
+- Used `asyncio.gather()` to execute multiple coroutines concurrently.
+- Created and managed individual tasks using `asyncio.create_task()`.
+- Practiced coordinating concurrent operations and waiting for task completion.
+- Simulated concurrent processing of multiple Telegram bot requests.
+
 ## Technologies
 
 - Python 3
@@ -108,6 +118,6 @@ Use test values for the current exercises. Never commit real Telegram bot tokens
 
 ## Status
 
-**Day 3 of 30 — Final Git verification pending.**
+**Day 4 of 30 completed.**
 
 This repository will continue to grow as I learn aiogram 3.x, databases, API integrations, and VPS deployment.
