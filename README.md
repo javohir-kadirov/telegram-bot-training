@@ -28,7 +28,22 @@ telegram-bot-training/
 │   ├── config.py
 │   ├── order_validation.py
 │   └── order_logging.py
-├── .env                  # Local configuration (not tracked by Git)
+├── day04/
+│   ├── __init__.py
+│   ├── async_intro.py
+│   ├── create_task_intro.py
+│   ├── final_async.py
+│   └── review.py
+├── day05/
+│   ├── __init__.py
+│   ├── .env.example
+│   ├── architecture.py
+│   ├── config.py
+│   ├── main.py
+│   └── handlers/
+│       ├── __init__.py
+│       └── commands.py
+├── .env                  # Local secrets (not tracked by Git)
 ├── .gitignore
 └── README.md
 ```
@@ -53,8 +68,8 @@ telegram-bot-training/
 
 ### Day 3 — Exception Handling, Logging and Configuration
 
-- Learned exception handling with `try`, `except`, `else`, `finally`, and `raise`.
-- Implemented order validation with input conversion and custom error messages.
+- Practiced exception handling with `try`, `except`, `else`, `finally`, and `raise`.
+- Implemented order validation with input conversion and descriptive error messages.
 - Tested valid and invalid input scenarios.
 - Configured Python logging with `DEBUG`, `INFO`, and `WARNING` levels.
 - Practiced logging application events and validation errors.
@@ -72,52 +87,122 @@ telegram-bot-training/
 - Practiced coordinating concurrent operations and waiting for task completion.
 - Simulated concurrent processing of multiple Telegram bot requests.
 
+### Day 5 — Introduction to aiogram 3.x
+
+- Learned the architecture of `Bot`, `Dispatcher`, and `Router`.
+- Created a Telegram bot using BotFather.
+- Connected the bot to the Telegram Bot API.
+- Implemented secure token loading through environment variables.
+- Used `bot.get_me()` to retrieve bot information.
+- Started receiving updates through long polling.
+- Implemented `/start` and `/help` command handlers.
+- Practiced using `CommandStart` and `Command` filters.
+- Added logging for application startup, shutdown, and incoming commands.
+- Organized handlers into a separate Python package.
+- Practiced registering routers with `Dispatcher.include_router()`.
+- Used `if __name__ == "__main__"` to define the application entry point.
+
 ## Technologies
 
 - Python 3
-- Git and GitHub
-- Linux
+- aiogram 3.x
+- asyncio
 - Python logging
 - python-dotenv
+- Git and GitHub
+- Linux
 
-## Running the Exercises
+## Setup and Installation
 
-Create and activate a virtual environment:
+### 1. Create a Virtual Environment
 
 ```bash
 python -m venv .venv
+```
+
+Activate the environment:
+
+**Bash / Zsh:**
+
+```bash
 source .venv/bin/activate
 ```
 
-For Fish shell:
+**Fish shell:**
 
 ```fish
 source .venv/bin/activate.fish
 ```
 
-Install the configuration dependency:
+### 2. Install Dependencies
 
 ```bash
-python -m pip install python-dotenv
+python -m pip install "aiogram>=3,<4" python-dotenv
 ```
 
-Run the exercises from the project root:
+### 3. Configure Environment Variables
+
+Create a `.env` file in the project root.
+
+Use `day05/.env.example` as a reference:
+
+```dotenv
+BOT_TOKEN=your_telegram_bot_token_here
+```
+
+Replace the placeholder with a token obtained from BotFather.
+
+**Security:** Never commit real Telegram bot tokens, passwords, or other secrets to Git.
+
+## Running the Exercises
+
+Run commands from the project root.
+
+### Day 1 — Python Fundamentals
 
 ```bash
 python day01_diagnostics.py
+```
+
+### Day 2 — Modules and OOP
+
+```bash
 python -m day02.main
+```
+
+### Day 3 — Exception Handling and Logging
+
+```bash
 python -m day03.order_validation
 python -m day03.order_logging
 ```
 
-## Environment Configuration
+### Day 4 — Asyncio
 
-Create a `.env` file in the project root using `day03/.env.example` as a reference.
+```bash
+python -m day04.async_intro
+python -m day04.create_task_intro
+python -m day04.final_async
+python -m day04.review
+```
 
-Use test values for the current exercises. Never commit real Telegram bot tokens, passwords, or other secrets.
+### Day 5 — Telegram Bot
 
-## Status
+```bash
+python -m day05.main
+```
 
-**Day 4 of 30 completed.**
+Once running, open the bot in Telegram and send:
 
-This repository will continue to grow as I learn aiogram 3.x, databases, API integrations, and VPS deployment.
+- `/start` — Display the welcome message.
+- `/help` — Display available commands.
+
+The bot uses long polling to receive Telegram updates.
+
+Press `Ctrl+C` to stop the bot.
+
+## Project Status
+
+**Day 5 of 30 — Completed**
+
+The next stages of this training program will focus on advanced aiogram features, databases, API integrations, and deploying production-ready Telegram bots to Linux VPS servers.
