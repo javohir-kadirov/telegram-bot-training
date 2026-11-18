@@ -201,8 +201,19 @@ The bot uses long polling to receive Telegram updates.
 
 Press `Ctrl+C` to stop the bot.
 
+### Day 6 — Message Filters and Content Handling
+
+- Learned to use `F` filters in aiogram 3.x.
+- Implemented case-insensitive text message handlers.
+- Handled incoming photos and documents.
+- Retrieved document filenames from Telegram messages.
+- Organized message handlers into separate routers.
+- Learned how handler registration order affects message processing.
+- Implemented a fallback handler for unknown messages.
+- Practiced asynchronous message handling and logging.
+
 ## Project Status
 
-**Day 5 of 30 — Completed**
+**Day 6 of 30 — Completed**
 
 The next stages of this training program will focus on advanced aiogram features, databases, API integrations, and deploying production-ready Telegram bots to Linux VPS servers.
