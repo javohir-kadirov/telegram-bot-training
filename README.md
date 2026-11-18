@@ -102,6 +102,17 @@ telegram-bot-training/
 - Practiced registering routers with `Dispatcher.include_router()`.
 - Used `if __name__ == "__main__"` to define the application entry point.
 
+### Day 6 — Message Filters and Content Handling
+
+- Learned to use `F` filters in aiogram 3.x.
+- Implemented case-insensitive text message handlers.
+- Handled incoming photos and documents.
+- Retrieved document filenames from Telegram messages.
+- Organized message handlers into separate routers.
+- Learned how handler registration order affects message processing.
+- Implemented a fallback handler for unknown messages.
+- Practiced asynchronous message handling and logging.
+
 ## Technologies
 
 - Python 3
@@ -201,16 +212,6 @@ The bot uses long polling to receive Telegram updates.
 
 Press `Ctrl+C` to stop the bot.
 
-### Day 6 — Message Filters and Content Handling
-
-- Learned to use `F` filters in aiogram 3.x.
-- Implemented case-insensitive text message handlers.
-- Handled incoming photos and documents.
-- Retrieved document filenames from Telegram messages.
-- Organized message handlers into separate routers.
-- Learned how handler registration order affects message processing.
-- Implemented a fallback handler for unknown messages.
-- Practiced asynchronous message handling and logging.
 
 ## Project Status
 
