@@ -1,6 +1,8 @@
 # Telegram Bot Development Training
 
-This repository contains my practical exercises and projects from a 30-day intensive Python Telegram bot development program.
+This repository contains my practical exercises and projects from a **30-day intensive Python Telegram bot development program**.
+
+The main goal is to develop practical skills in building reliable, asynchronous Telegram bots using Python and aiogram 3.x, with a focus on real-world projects and freelance development.
 
 ## Learning Goals
 
@@ -8,9 +10,11 @@ This repository contains my practical exercises and projects from a 30-day inten
 - Learn asynchronous programming with asyncio.
 - Develop Telegram bots using aiogram 3.x.
 - Work with SQLite and PostgreSQL.
-- Integrate external APIs.
+- Integrate external REST APIs.
+- Implement error handling, logging, and configuration management.
 - Practice Git and GitHub.
 - Deploy Telegram bots to Linux VPS servers.
+- Build a portfolio of practical projects.
 
 ## Project Structure
 
@@ -43,6 +47,25 @@ telegram-bot-training/
 │   └── handlers/
 │       ├── __init__.py
 │       └── commands.py
+├── day06/
+│   ├── __init__.py
+│   ├── main.py
+│   └── handlers/
+│       ├── __init__.py
+│       ├── text.py
+│       ├── media.py
+│       └── fallback.py
+├── day07/
+│   ├── __init__.py
+│   ├── main.py
+│   ├── first_request.py
+│   ├── error_handling.py
+│   ├── handlers/
+│   │   ├── __init__.py
+│   │   └── todo.py
+│   └── services/
+│       ├── __init__.py
+│       └── todo_api.py
 ├── .env                  # Local secrets (not tracked by Git)
 ├── .gitignore
 └── README.md
@@ -55,6 +78,7 @@ telegram-bot-training/
 - Practiced functions, loops, lists, and dictionaries.
 - Implemented user search and statistics.
 - Created the `SupportTicket` class.
+- Practiced object-oriented programming.
 - Configured a Python virtual environment and Git.
 
 ### Day 2 — Python Modules and GitHub
@@ -113,19 +137,102 @@ telegram-bot-training/
 - Implemented a fallback handler for unknown messages.
 - Practiced asynchronous message handling and logging.
 
+### Day 7 — HTTP, JSON and REST API Integration
+
+- Learned HTTP fundamentals and common request methods: `GET`, `POST`, `PUT`, `PATCH`, and `DELETE`.
+- Studied HTTP status codes, including `200`, `404`, and `500`.
+- Practiced JSON deserialization and serialization using `json.loads()` and `json.dumps()`.
+- Learned to make asynchronous HTTP requests using `aiohttp`.
+- Used `aiohttp.ClientSession` and asynchronous context managers.
+- Parsed JSON responses using `await response.json()`.
+- Validated HTTP responses using `response.raise_for_status()`.
+- Configured request timeouts using `aiohttp.ClientTimeout`.
+- Practiced handling HTTP errors, connection errors, and timeouts.
+- Integrated an external REST API into an aiogram Telegram bot.
+- Separated API communication into a service module.
+- Implemented the `/todo` command to retrieve task data from JSONPlaceholder.
+- Added logging and user-friendly error messages.
+- Tested successful API responses and HTTP 404 error handling.
+
+#### Day 7 Project — Telegram Todo Bot
+
+A Telegram bot that retrieves task information from the JSONPlaceholder REST API and displays it to the user.
+
+**Features:**
+
+- `/todo` — Fetch and display a task from an external REST API.
+- Asynchronous HTTP requests using `aiohttp`.
+- JSON response parsing.
+- HTTP status validation.
+- Request timeout configuration.
+- Handling of HTTP errors, connection errors, and timeouts.
+- Logging of commands and API exceptions.
+- Separation of Telegram handlers and API services.
+
+**Architecture:**
+
+```text
+Telegram User
+      |
+      v
+aiogram Dispatcher
+      |
+      v
+Todo Handler
+(day07/handlers/todo.py)
+      |
+      v
+API Service
+(day07/services/todo_api.py)
+      |
+      v
+JSONPlaceholder REST API
+      |
+      v
+JSON Response
+      |
+      v
+Telegram Message
+```
+
+**Example successful response:**
+
+```text
+📋 Task: molestiae perspiciatis ipsa
+✅ Done: False
+```
+
+**Example HTTP error response:**
+
+```text
+Response error 404
+```
+
+The project demonstrates how a Telegram bot can communicate with an external service while keeping API communication separate from message-handling logic.
+
 ## Technologies
 
 - Python 3
 - aiogram 3.x
+- aiohttp
 - asyncio
 - Python logging
 - python-dotenv
+- REST APIs
+- JSON
 - Git and GitHub
 - Linux
 
 ## Setup and Installation
 
-### 1. Create a Virtual Environment
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/javohir-kadirov/telegram-bot-training.git
+cd telegram-bot-training
+```
+
+### 2. Create a Virtual Environment
 
 ```bash
 python -m venv .venv
@@ -145,13 +252,13 @@ source .venv/bin/activate
 source .venv/bin/activate.fish
 ```
 
-### 2. Install Dependencies
+### 3. Install Dependencies
 
 ```bash
-python -m pip install "aiogram>=3,<4" python-dotenv
+python -m pip install "aiogram>=3,<4" aiohttp python-dotenv
 ```
 
-### 3. Configure Environment Variables
+### 4. Configure Environment Variables
 
 Create a `.env` file in the project root.
 
@@ -165,9 +272,11 @@ Replace the placeholder with a token obtained from BotFather.
 
 **Security:** Never commit real Telegram bot tokens, passwords, or other secrets to Git.
 
+The `.env` file must remain excluded from version control.
+
 ## Running the Exercises
 
-Run commands from the project root.
+Run all commands from the project root with the virtual environment activated.
 
 ### Day 1 — Python Fundamentals
 
@@ -208,13 +317,57 @@ Once running, open the bot in Telegram and send:
 - `/start` — Display the welcome message.
 - `/help` — Display available commands.
 
+### Day 6 — Message Filters
+
+```bash
+python -m day06.main
+```
+
+Test the bot by sending text messages, photos, documents, and unsupported messages.
+
+### Day 7 — REST API Integration
+
+Run the standalone HTTP examples:
+
+```bash
+python -m day07.first_request
+python -m day07.error_handling
+```
+
+Start the Telegram Todo Bot:
+
+```bash
+python -m day07.main
+```
+
+Open the bot in Telegram and send:
+
+- `/todo` — Retrieve and display a task from JSONPlaceholder.
+
+If the external API returns an error, the bot responds with an error message instead of silently failing.
+
 The bot uses long polling to receive Telegram updates.
 
-Press `Ctrl+C` to stop the bot.
+Press `Ctrl+C` to stop a running bot.
 
+**Note:** Run only one polling process for the same Telegram bot token at a time.
 
 ## Project Status
 
-**Day 6 of 30 — Completed**
+**Day 7 of 30 — Practical Tasks Completed**
 
-The next stages of this training program will focus on advanced aiogram features, databases, API integrations, and deploying production-ready Telegram bots to Linux VPS servers.
+Completed topics:
+
+- Python fundamentals and OOP
+- Modules, type hints, and Git
+- Exception handling and logging
+- Asynchronous programming with asyncio
+- Telegram bot development using aiogram 3.x
+- Message filtering and content handling
+- HTTP, JSON, and external REST API integration
+
+**Next steps:**
+
+Continue developing more advanced Telegram bot functionality, including structured user interactions, databases, and progressively more realistic projects.
+
+The long-term goal is to build production-ready Telegram bots and develop a portfolio suitable for freelance work.
